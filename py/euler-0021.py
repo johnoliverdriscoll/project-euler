@@ -15,12 +15,16 @@ def factorize(n, f = None):
     x += 1
   return f
 
-n = int(sys.argv[1])
-z = 1
-t = 0
-while True:
-  t += z
-  z += 1
-  if len(factorize(t)) > n:
-    print(t)
-    exit()
+def proper_divisors(n):
+  return factorize(n) - set([n])
+
+s = 0
+f = set()
+for a in range(2, 10000):
+  if a in f:
+    continue
+  b = sum(proper_divisors(a))
+  if a != b and sum(proper_divisors(b)) == a:
+    s += a + b
+    f.add(b)
+print(s)

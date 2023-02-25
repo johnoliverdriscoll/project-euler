@@ -1,5 +1,5 @@
-import os
-f = open(os.path.join(os.path.dirname(__file__), '../fixtures/p067_triangle.txt'))
+from os import path
+f = open(path.join(path.dirname(__file__), '../fixtures/p067_triangle.txt'))
 t = []
 while True:
   l = f.readline()
