@@ -2,7 +2,7 @@ from functools import cmp_to_key
 from locale import strcoll
 from os import path
 
-f = open(path.join(path.dirname(__file__), '../fixtures/p022_names.txt'))
+f = open(path.join(path.dirname(__file__), '../resources/p022_names.txt'))
 names = list(map(lambda name: name.strip('"'), f.readline().split(',')))
 names.sort(key=cmp_to_key(strcoll))
 s = 0

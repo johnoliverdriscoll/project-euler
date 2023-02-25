@@ -1,5 +1,5 @@
 from os import path
-f = open(path.join(path.dirname(__file__), '../fixtures/p067_triangle.txt'))
+f = open(path.join(path.dirname(__file__), '../resources/p067_triangle.txt'))
 t = []
 while True:
   l = f.readline()
