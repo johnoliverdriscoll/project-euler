@@ -1,5 +1,5 @@
 def is_prime(n):
-  if n < 0:
+  if n < 2:
     return False
   for x in range(2, int(n ** (1 / 2)) + 1):
     if n % x == 0:

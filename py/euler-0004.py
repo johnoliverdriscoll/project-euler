@@ -1,4 +1,12 @@
 import sys
+
+def is_palindrome(l):
+  c = l.copy()
+  while len(c) > 1:
+    if not c.pop(0) == c.pop():
+      return False
+  return True
+
 e = int(sys.argv[1])
 m = 10 ** (e - 1)
 n = 10 ** e - 1
@@ -10,13 +18,7 @@ while x >= m:
     p = x * y
     if p > q:
       break
-    c = list(str(p))
-    is_palindrome = True
-    while len(c) > 1:
-      if not c.pop(0) == c.pop():
-        is_palindrome = False
-        break
-    if is_palindrome:
+    if is_palindrome(list(str(p))):
       print(p)
       exit()
     y -= 1
