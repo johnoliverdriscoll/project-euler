@@ -1,13 +1,15 @@
-def is_prime(n, p = set()):
+def is_prime(n, p = dict()):
   if n in p:
-    return True
+    return p[n]
   if n < 2:
     return False
   for x in range(2, int(n ** (1 / 2)) + 1):
     if n % x == 0:
-      return False
-  p.add(n)
-  return True
+      p[n] = False
+      break
+  if not n in p:
+    p[n] = True
+  return p[n]
 
 def lstrip(n):
   d = str(n)
