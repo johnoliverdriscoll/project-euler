@@ -16,4 +16,4 @@ def permutation(digits, i):
     else:
       return [digits[j]] + permutation(digits[0:j] + digits[j + 1:], i)
 
-print(''.join(map(lambda n: str(n), permutation(list(map(lambda n: int(n), '0123456789')), 1000000))))
+print(''.join(map(str, permutation(list(map(int, '0123456789')), 1000000))))
