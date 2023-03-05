@@ -64,14 +64,12 @@ while True:
         not_prime = 0
         prime = 1
         while replacement < 10 and 10 - not_prime >= n:
-          if replacement == d or (replacement == 0 and reps[d][0] == None):
-            replacement += 1
-            continue
-          v = list_to_int(list(map(lambda d: replacement if d == None else d, reps[d])))
-          if is_prime(v):
-            prime += 1
-          else:
-            not_prime += 1
+          if replacement != d and (replacement != 0 or reps[d][0] != None):
+            v = list_to_int(list(map(lambda d: replacement if d == None else d, reps[d])))
+            if is_prime(v):
+              prime += 1
+            else:
+              not_prime += 1
           replacement += 1
         if prime == n:
           print(i)
