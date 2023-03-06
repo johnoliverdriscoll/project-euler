@@ -50,8 +50,8 @@ while True:
   for q in Q:
     if is_prime_concatenation(p, q):
       Qp.append(q)
-  for Cp in combinate(Qp, k - 1):
-    if is_prime_combination(Cp, Q):
-      print(p + sum(Cp))
+  for C in combinate(Qp, k - 1):
+    if is_prime_combination(C, Q):
+      print(p + sum(C))
       exit()
   Q[p] = Qp
