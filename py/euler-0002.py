@@ -1,5 +1,6 @@
-import sys
-n = int(sys.argv[1])
+from sys import argv
+
+n = int(argv[1])
 sum = 2
 a = 1
 b = 2

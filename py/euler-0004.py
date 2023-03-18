@@ -1,4 +1,4 @@
-import sys
+from sys import argv
 
 def is_palindrome(l):
   c = l.copy()
@@ -7,7 +7,7 @@ def is_palindrome(l):
       return False
   return True
 
-e = int(sys.argv[1])
+e = int(argv[1])
 m = 10 ** (e - 1)
 n = 10 ** e - 1
 x = n

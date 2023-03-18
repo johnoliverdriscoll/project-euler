@@ -1,7 +1,8 @@
 def factorize(n, f = None):
   if not f:
     f = set()
-  f |= set([1, n])
+  f.add(1)
+  f.add(n)
   x = 2
   l = n // 2
   while x < l:
@@ -9,7 +10,8 @@ def factorize(n, f = None):
       l = n // x
       f.add(x)
       if not n // x in f:
-        f |= factorize(n // x, f)
+        for y in factorize(n // x, f):
+          f.add(y)
     x += 1
   return f
 

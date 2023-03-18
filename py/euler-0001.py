@@ -1,5 +1,6 @@
-import sys
-n = int(sys.argv[1])
+from sys import argv
+
+n = int(argv[1])
 sum = 0
 for x in range(3, n, 3):
   sum += x

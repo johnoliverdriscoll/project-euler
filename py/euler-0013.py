@@ -101,4 +101,4 @@ n = """
 53503534226472524250874054075591789781264330331690
 """
 
-print(str(sum(map(int, filter(len, n.split('\n')))))[0:10])
+print(str(sum([int(l) for l in n.split('\n') if len(l)]))[0:10])

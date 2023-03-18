@@ -4,7 +4,7 @@ def sqrt2():
   n = 3
   d = 2
   yield (n, d)
-  while True:
+  while 1:
     n, d = n + 2 * d, n + d
     yield (n, d)
 

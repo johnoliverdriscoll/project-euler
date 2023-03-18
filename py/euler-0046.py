@@ -20,7 +20,7 @@ def is_goldbach_composite(n):
   return False
 
 n = 9
-while True:
+while 1:
   if not is_prime(n) and not is_goldbach_composite(n):
     print(n)
     exit()

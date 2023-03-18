@@ -11,7 +11,7 @@ def triangular(n):
   return (n * (n + 1)) // 2
 
 n = 286
-while True:
+while 1:
   t = triangular(n)
   if is_pentagonal(t) and is_hexagonal(t):
     print(t)

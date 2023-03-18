@@ -1,8 +1,8 @@
-import sys
+from sys import argv
 
-n = int(sys.argv[1])
+n = int(argv[1])
 i = 1
-while True:
+while 1:
   if len(str(i)) != len(set(str(i))):
     i += 1
     continue

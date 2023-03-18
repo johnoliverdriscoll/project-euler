@@ -1,4 +1,4 @@
-import sys
+from sys import argv
 
 def is_prime(n, p = dict()):
   if n in p:
@@ -13,11 +13,8 @@ def is_prime(n, p = dict()):
     p[n] = True
   return p[n]
 
-def list_to_int(digits):
-  return sum(map(
-    lambda t: t[0] * 10 ** t[1],
-    zip(digits, reversed(range(0, len(digits))))
-  ))
+def list_to_int(d):
+  return sum([t[0] * 10 ** t[1] for t in zip(d, reversed(range(0, len(d))))])
 
 def int_to_list(n):
   l = list()
@@ -36,25 +33,19 @@ def get_digit_freq(n):
   return freq
 
 def get_rep_tuples(n):
-  freq = get_digit_freq(n)
-  rep_digits = set(freq.keys())
   l = int_to_list(n)
   return dict(
-    list(
-      filter(
-        lambda pair: pair[1] != tuple([None] * len(l)),
-        map(
-          lambda rep_digit: (rep_digit, tuple(list(map(lambda d: None if d == rep_digit else d, l)))),
-          rep_digits
-        )
-      )
-    )
+    [pair for pair in [
+      (rep, tuple([
+        None if d == rep else d for d in l
+      ])) for rep in set(get_digit_freq(n).keys())
+    ] if pair[1] != tuple([None] * len(l))]
   )
 
-n = int(sys.argv[1])
+n = int(argv[1])
 visited = set()
 i = 1
-while True:
+while 1:
   reps = get_rep_tuples(i)
   if len(reps) and is_prime(i):
     for d in reps:
@@ -65,7 +56,7 @@ while True:
         prime = 1
         while replacement < 10 and 10 - not_prime >= n:
           if replacement != d and (replacement != 0 or reps[d][0] != None):
-            v = list_to_int(list(map(lambda d: replacement if d == None else d, reps[d])))
+            v = list_to_int([replacement if d == None else d for d in reps[d]])
             if is_prime(v):
               prime += 1
             else:

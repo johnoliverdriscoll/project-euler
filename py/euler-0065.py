@@ -13,4 +13,4 @@ d = denominator(r)
 for i in reversed(range(1, r)):
   n += d * denominator(i)
   n, d = d, n
-print(sum(map(int, str(d))))
+print(sum([int(c) for c in str(d)]))

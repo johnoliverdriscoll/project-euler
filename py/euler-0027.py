@@ -11,7 +11,7 @@ p = None
 for a in range(-1000, 1001):
   for b in range(-1000, 1001):
     n = 0
-    while True:
+    while 1:
       x = int(n ** 2 + a * n + b)
       if not is_prime(x):
         break

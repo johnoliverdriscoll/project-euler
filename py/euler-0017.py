@@ -1,4 +1,4 @@
-import sys
+from sys import argv
 
 n_map = {
   1: 'one',
@@ -41,7 +41,7 @@ def to_english(n):
     return n_map[n // 1000] + 'thousand'
   return n_map[n // 1000] + 'thousand' + to_english(n % 1000)
 
-n = int(sys.argv[1])
+n = int(argv[1])
 s = 0
 for i in range(1, n + 1):
   s += len(to_english(i))

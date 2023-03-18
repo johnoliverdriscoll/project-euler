@@ -1,4 +1,4 @@
-import sys
+from sys import argv
 
 def is_prime(n):
   if n < 2:
@@ -8,10 +8,10 @@ def is_prime(n):
       return False
   return True
 
-n = int(sys.argv[1])
+n = int(argv[1])
 c = 0
 p = 2
-while True:
+while 1:
   if is_prime(p):
     c += 1
     if c == n:

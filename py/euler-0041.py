@@ -14,7 +14,8 @@ def next_pandigital(n):
   if i == 0:
     return int(d[::-1][1:])
   n = next(filter(lambda n: int(n) < int(d[i - 1]), reversed(sorted(d[i:]))))
-  return int(d[:i - 1] + n + ''.join(list(filter(lambda m: m != n, reversed(sorted(d[i - 1:i] + d[i:]))))))
+  l = [m for m in reversed(sorted(d[i - 1:i] + d[i:])) if m != n]
+  return int(d[:i - 1] + n + ''.join(l))
 
 d = 987654321
 while not is_prime(d):

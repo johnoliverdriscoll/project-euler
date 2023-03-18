@@ -1,4 +1,4 @@
-import sys
+from sys import argv
 
 def is_prime(n, p = dict()):
   if n in p:
@@ -16,17 +16,17 @@ def is_prime(n, p = dict()):
 def prime():
   yield 2
   n = 3
-  while True:
+  while 1:
     if is_prime(n):
       yield n
     n += 2
 
-n = int(sys.argv[1])
+n = int(argv[1])
 p = []
 it = prime()
 m = 0
 c = 0
-while True:
+while 1:
   p.append(next(it))
   if sum(p[-c:]) > n:
     break

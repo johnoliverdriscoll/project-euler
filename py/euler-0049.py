@@ -1,11 +1,4 @@
-def permutate(s, not_first = '0'):
-  if len(s) == 1:
-    yield s
-  else:
-    for i in range(0, len(s)):
-      if not_first == None or s[i] != not_first:
-        for p in permutate(s[:i] + s[i + 1:], None):
-          yield s[i] + p
+from itertools import permutations
 
 def is_prime(n, p = dict()):
   if n in p:
@@ -23,8 +16,9 @@ def is_prime(n, p = dict()):
 def prime_permutations(n, v = set()):
   if n in v:
     return
-  p = list(set(map(int, permutate(str(n)))))
-  v |= set(p)
+  p = list(set([int(''.join(p)) for p in permutations(str(n)) if p[0] != '0']))
+  for x in p:
+    v.add(x)
   i = 0
   while i < len(p) - 3:
     j = i + 1
@@ -37,6 +31,5 @@ def prime_permutations(n, v = set()):
     i += 1
 
 for n in range(1000, 10000):
-  p = prime_permutations(n)
-  if p:
-    print(''.join(map(str, p)))
+  if (p := prime_permutations(n)):
+    print(''.join([str(c) for c in p]))

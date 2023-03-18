@@ -1,4 +1,4 @@
-import sys
+from sys import argv
 
 def is_figurate(n, d):
   if n == 3:
@@ -14,20 +14,20 @@ def is_figurate(n, d):
   if n == 8:
     return (2 + (4 + 12 * d) ** (1 / 2)) % 6 == 0
 
-def cyclic_figurates(figurates, d, first=None):
+def cyclic_figurates(f, d, first=None):
   groups = []
   if first == None:
     first = d
   elif d % 100 == first // 100:
     groups.append([d])
-  for i in range(0, len(figurates)):
-    for x in figurates[i]:
+  for i in range(0, len(f)):
+    for x in f[i]:
       if d % 100 == x // 100:
-        for group in cyclic_figurates(figurates[:i] + figurates[i + 1:], x, first):
+        for group in cyclic_figurates(f[:i] + f[i + 1:], x, first):
           groups.append([d] + group)
   return groups
 
-count = int(sys.argv[1])
+count = int(argv[1])
 figurates = {
   3: set(),
   4: set(),

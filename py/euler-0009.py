@@ -1,5 +1,6 @@
-import sys
-n = int(sys.argv[1])
+from sys import argv
+
+n = int(argv[1])
 for c in range(1, n):
   for b in range(1, c):
     for a in range(1, b):

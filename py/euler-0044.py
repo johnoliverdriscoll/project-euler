@@ -5,9 +5,10 @@ def pentagonal(n):
   return (n * (3 * n - 1)) // 2
 
 i = 1
-while True:
+while 1:
   for j in reversed(range(1, i + 1)):
-    if is_pentagonal(pentagonal(i) + pentagonal(j)) and is_pentagonal(pentagonal(i) - pentagonal(j)):
+    if is_pentagonal(pentagonal(i) + pentagonal(j)) \
+       and is_pentagonal(pentagonal(i) - pentagonal(j)):
       print(pentagonal(i) - pentagonal(j))
       exit()
   i += 1

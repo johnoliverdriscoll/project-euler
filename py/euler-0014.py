@@ -1,4 +1,4 @@
-import sys
+from sys import argv
 
 def next_collatz(n):
   if n % 2 == 0:
@@ -17,7 +17,7 @@ def collatz_chain_len(n, memo):
   memo[m] = l
   return l
 
-n = int(sys.argv[1])
+n = int(argv[1])
 i, l, z = 1, 1, 1
 memo = dict()
 while i < n:

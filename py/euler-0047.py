@@ -1,4 +1,4 @@
-import sys
+from sys import argv
 
 def is_prime(n, p = dict()):
   if n in p:
@@ -16,7 +16,8 @@ def is_prime(n, p = dict()):
 def factorize(n, f = None):
   if not f:
     f = set()
-  f |= set([1, n])
+  f.add(1)
+  f.add(n)
   x = 2
   l = n // 2
   while x < l:
@@ -24,7 +25,8 @@ def factorize(n, f = None):
       l = n // x
       f.add(x)
       if not n // x in f:
-        f |= factorize(n // x, f)
+        for y in factorize(n // x, f):
+          f.add(y)
     x += 1
   return f
 
@@ -32,13 +34,13 @@ def count_distinct_prime_factors(x, n, f = dict()):
   for i in range(x, x + n):
     if not i in f:
       f[i] = factorize(i)
-    if len(list((filter(is_prime, f[i] - set([1, i]))))) != n:
+    if len([x for x in f[i] - set([1, i]) if is_prime(x)]) != n:
       return i - x
   return n
 
-n = int(sys.argv[1])
+n = int(argv[1])
 x = 0
-while True:
+while 1:
   c = count_distinct_prime_factors(x, n)
   if c == n:
     print(x)

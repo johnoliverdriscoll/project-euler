@@ -1,9 +1,9 @@
 c = 0
 e = 1
-while True:
+while 1:
   b = 1
   d = c
-  while True:
+  while 1:
     l = len(str(b ** e))
     if l == e:
       c += 1

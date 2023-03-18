@@ -10,7 +10,7 @@
 # cube is added to the tree, build the intersection between it and
 # the permutations of the cube. The first cube whose intersection has
 # five leaves is the answer.
-import sys
+from sys import argv
 from math import log10
 
 class Node:
@@ -35,7 +35,10 @@ class Node:
       for i in range(0, len(s)):
         if not_first == None or s[i] != not_first:
           if not node.children[s[i]] and self.children[s[i]]:
-            node.children[s[i]] = self.children[s[i]].permutate(s[:i] + s[i + 1:], None)
+            node.children[s[i]] = self.children[s[i]].permutate(
+              s[:i] + s[i + 1:],
+              None,
+            )
     return node
 
   def leaves(self):
@@ -54,11 +57,8 @@ class Node:
         if path != None:
           return [i] + path
 
-def tuple_to_int(digits):
-  return sum(map(
-    lambda t: t[0] * 10 ** t[1],
-    zip(digits, reversed(range(0, len(digits))))
-  ))
+def tuple_to_int(d):
+  return sum([t[0] * 10 ** t[1] for t in zip(d, reversed(range(0, len(d))))])
 
 def int_to_tuple(n):
   l = tuple()
@@ -67,10 +67,10 @@ def int_to_tuple(n):
     n //= 10
   return l
 
-n = int(sys.argv[1])
+n = int(argv[1])
 x = 1
 node = Node()
-while True:
+while 1:
   x3 = x ** 3
   t = int_to_tuple(x3)
   node.add(t)

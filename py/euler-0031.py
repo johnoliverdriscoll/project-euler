@@ -1,8 +1,6 @@
-def combinate(t, d, memo = None):
+def combinate(t, d, memo = dict()):
   if len(d) == 0:
     return set()
-  if memo == None:
-    memo = dict()
   if not (t, d) in memo:
     f = set()
     for i in range(0, len(d)):
@@ -11,8 +9,8 @@ def combinate(t, d, memo = None):
         if c * d[i] == t:
           f.add(((d[i], c),))
         else:
-          for e in combinate(t - c * d[i], d[0: i] + d[i + 1:], memo):
-            f |= set([tuple(sorted(((d[i], c),) + e, key=lambda t: t[0]))])
+          for e in combinate(t - c * d[i], d[i + 1:], memo):
+            f.add(tuple(sorted(((d[i], c),) + e, key=lambda t: t[0])))
         c += 1
     memo[(t, d)] = f
   return memo[(t, d)]

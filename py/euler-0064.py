@@ -12,7 +12,7 @@ while x <= 10000:
     n = i
     d = 1
     digits = 0
-    while True:
+    while 1:
       i_n = int(d / (x ** (1 / 2) - n))
       d_i_n = d + i_n * n
       h_1 = d_i_n - i_n * n

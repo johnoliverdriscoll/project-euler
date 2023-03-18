@@ -47,7 +47,10 @@ class Card:
 def parse_hand(cards):
   value_freq_map = dict()
   suit_freq_map = dict()
-  for card in sorted(map(Card.parse, cards.split(' ')), key=lambda card: card.value):
+  for card in sorted(
+      map(Card.parse, cards.split(' ')),
+      key=lambda card: card.value,
+  ):
     value_freq_map[card.value] = value_freq_map.get(card.value, 0) + 1
     suit_freq_map[card.suit] = suit_freq_map.get(card.value, 0) + 1
   values = list(reversed(value_freq_map.keys()))
@@ -58,25 +61,51 @@ def parse_hand(cards):
       return tuple([Hand.STRAIGHT_FLUSH] + values)
     return tuple([Hand.STRAIGHT] + values)
   if 4 in value_freq_map.values():
-    value = next(filter(lambda value: value_freq_map[value] == 4, value_freq_map))
-    return tuple([Hand.FOUR_OF_A_KIND, value] + list(filter(lambda v: value != v, value_freq_map)))
+    value = next(filter(
+      lambda value: value_freq_map[value] == 4,
+      value_freq_map,
+    ))
+    return tuple(
+      [Hand.FOUR_OF_A_KIND, value]
+      + [v for v in value_freq_map if value != v]
+    )
   if 3 in value_freq_map.values() and 2 in value_freq_map.values():
-    triplet = next(filter(lambda value: value_freq_map[value] == 3, value_freq_map))
-    pair = next(filter(lambda value: value_freq_map[value] == 3, value_freq_map))
+    triplet = next(filter(
+      lambda value: value_freq_map[value] == 3,
+      value_freq_map,
+    ))
+    pair = next(filter(
+      lambda value: value_freq_map[value] == 3,
+      value_freq_map,
+    ))
     return tuple([Hand.FULL_HOUSE, triplet, pair])
   if len(suit_freq_map) == 1:
     return tuple([Hand.FLUSH] + values)
   if 3 in value_freq_map.values():
-    value = next(filter(lambda value: value_freq_map[value] == 3, value_freq_map))
-    high_cards = list(reversed(sorted(filter(lambda v: value != v, value_freq_map))))
+    value = next(filter(
+      lambda value: value_freq_map[value] == 3,
+      value_freq_map,
+    ))
+    high_cards = list(reversed(sorted(
+      [v for v in value_freq_map if value != v]
+    )))
     return tuple([Hand.THREE_OF_A_KIND, value] + high_cards)
-  if len(list(filter(lambda freq: freq == 2, value_freq_map.values()))) == 2:
-    pairs = list(reversed(sorted(filter(lambda value: value_freq_map[value] == 2, value_freq_map))))
-    high_cards = list(reversed(sorted(filter(lambda v: v not in pairs, value_freq_map))))
+  if len([freq for freq in value_freq_map.values() if freq == 2]) == 2:
+    pairs = list(reversed(sorted(
+      [value for value in value_freq_map if value_freq_map[value] == 2]
+    )))
+    high_cards = list(reversed(sorted(
+      [v for v in value_freq_map if v not in pairs]
+    )))
     return tuple([Hand.TWO_PAIR] + pairs + high_cards)
   if 2 in value_freq_map.values():
-    value = next(filter(lambda value: value_freq_map[value] == 2, value_freq_map))
-    high_cards = list(reversed(sorted(filter(lambda v: value != v, value_freq_map))))
+    value = next(filter(
+      lambda value: value_freq_map[value] == 2,
+      value_freq_map,
+    ))
+    high_cards = list(reversed(sorted(
+      [v for v in value_freq_map if value != v]
+    )))
     return tuple([Hand.PAIR, value] + high_cards)
   return tuple([Hand.HIGH_CARD] + values)
 
@@ -87,4 +116,4 @@ while True:
   if not l:
     break
   hands.append(l.strip())
-print(sum(map(lambda hands: parse_hand(hands[:14]) > parse_hand(hands[15:]), hands)))
+print(sum([parse_hand(hands[:14]) > parse_hand(hands[15:]) for hands in hands]))

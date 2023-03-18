@@ -42,7 +42,7 @@ def l_a(a):
   num = i
   den = 1
   l = 0
-  while True:
+  while 1:
     i_num = int(den / (a ** (1 / 2) - num))
     den_i = den + i_num * num
     h_1 = den_i - i_num * num

@@ -1,4 +1,4 @@
-import sys
+from sys import argv
 
 def digits(n):
   d = 0
@@ -11,7 +11,7 @@ def recurring_digits(d):
   n = 1
   m = []
   r = []
-  while True:
+  while 1:
     b = 0
     while n < d:
       n *= 10
@@ -24,7 +24,7 @@ def recurring_digits(d):
     n = n % d
     r.append(n)
 
-n = int(sys.argv[1])
+n = int(argv[1])
 c = 0
 d = None
 for i in range(1, n):

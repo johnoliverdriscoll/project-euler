@@ -1,11 +1,13 @@
-d = dict()
-for a in range(1, 1001):
-  for b in range(a, 1001):
-    if a + 2 * b > 1000:
-      break
-    for c in range(b, 1001):
-      if a + b + c > 1000:
-        break
-      if a ** 2 + b ** 2 == c ** 2:
-        d[a + b + c] = d.get(a + b + c, 0) + 1
-print(next(reversed(sorted(d.items(), key=lambda t: t[1])))[0])
+n = 1
+l = 0
+while n < 100000:
+  s = ''
+  m = 1
+  while len(s) < 9:
+    s += str(n * m)
+    m += 1
+  if len(s) == 9 and set(s) == set('123456789'):
+    if l < int(s):
+      l = int(s)
+  n += 1
+print(l)

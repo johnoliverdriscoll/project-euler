@@ -1,3 +1,4 @@
-import sys
-e = int(sys.argv[1])
-print(sum(map(int, str(2 ** e))))
+from sys import argv
+
+e = int(argv[1])
+print(sum([int(c) for c in str(2 ** e)]))

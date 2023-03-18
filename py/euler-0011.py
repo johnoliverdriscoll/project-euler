@@ -20,10 +20,10 @@ grid = """
 20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
 """
-v = list(map(int, filter(len, ' '.join(grid.splitlines()).split(' '))))
+v = [int(n) for n in ' '.join(grid.splitlines()).split(' ') if len(n)]
 
 def stride(v, offset, stride, count):
-  return map(lambda i: v[i], range(offset, offset + count * stride, stride))
+  return [v[i] for i in range(offset, offset + count * stride, stride)]
 
 def offsets(width, col_start, col_end, row_start, row_end):
   offsets = list()
@@ -39,8 +39,8 @@ def product(v):
   return p
 
 print(max([e for l in [
-  map(lambda offset: product(stride(v, offset,  1, 4)), offsets(20, 0, 16, 0, 19)),
-  map(lambda offset: product(stride(v, offset, 20, 4)), offsets(20, 0, 19, 0, 16)),
-  map(lambda offset: product(stride(v, offset, 21, 4)), offsets(20, 0, 16, 0, 16)),
-  map(lambda offset: product(stride(v, offset, 19, 4)), offsets(20, 3, 19, 0, 16)),
+  [product(stride(v, off,  1, 4)) for off in offsets(20, 0, 16, 0, 19)],
+  [product(stride(v, off, 20, 4)) for off in offsets(20, 0, 19, 0, 16)],
+  [product(stride(v, off, 21, 4)) for off in offsets(20, 0, 16, 0, 16)],
+  [product(stride(v, off, 19, 4)) for off in offsets(20, 3, 19, 0, 16)],
 ] for e in l]))

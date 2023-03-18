@@ -1,5 +1,6 @@
-import sys
-e = int(sys.argv[1])
+from sys import argv
+
+e = int(argv[1])
 d = [0] * (e + 1)
 t = 0
 while d != [9] * (e + 1):
@@ -11,7 +12,7 @@ while d != [9] * (e + 1):
   else:
     d[i] += 1
   if len(set(d) - set([0])) > 1:
-    r = sum(map(lambda n: n ** e, d))
+    r = sum([n ** e for n in d])
     s = '0' * (e + 1 - len(str(r))) + str(r)
     u = d.copy()
     for c in s:

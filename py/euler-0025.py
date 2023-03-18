@@ -1,5 +1,6 @@
-import sys
-n = int(sys.argv[1])
+from sys import argv
+
+n = int(argv[1])
 f_0 = 1
 f_1 = 1
 i = 2
