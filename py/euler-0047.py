@@ -20,7 +20,10 @@ def factorize(n, f = None):
   f.add(n)
   x = 2
   l = n // 2
+  sqrt_n = n ** (1 / 2)
   while x <= l:
+    if x > sqrt_n and len(f) == 2:
+      return f
     if n % x == 0:
       l = n // x
       f.add(x)
