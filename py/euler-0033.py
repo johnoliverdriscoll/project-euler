@@ -5,7 +5,7 @@ def factorize(n, f = None):
   f.add(n)
   x = 2
   l = n // 2
-  while x < l:
+  while x <= l:
     if n % x == 0:
       l = n // x
       f.add(x)
