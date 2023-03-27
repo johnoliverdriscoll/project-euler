@@ -1,10 +1,4 @@
-def factorial(n):
-  if n == 0:
-    return 1
-  f = n
-  for x in range(2, n):
-    f *= x
-  return f
+from math import factorial
 
 x = 3
 s = 0
