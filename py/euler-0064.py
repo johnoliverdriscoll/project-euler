@@ -1,5 +1,3 @@
-from math import gcd
-
 def is_perfect_square(x):
   x = abs(x)
   return round(x ** (1 / 2)) ** 2 == x
