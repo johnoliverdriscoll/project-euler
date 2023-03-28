@@ -1,5 +1,3 @@
-from sys import argv
-
 def pentagonal(n):
   return (3 * n * n - n) // 2
 
@@ -24,10 +22,11 @@ def p(n, p=[1, 1], pentagonals=list()):
       p.append(partitions)
   return p[n]
 
-def count_summations(n):
-  if n < 2:
-    return 1
-  return p(n) - 1
-
-n = int(argv[1])
-print(count_summations(n))
+k = 0
+while 1:
+  n = 5 * k + 4
+  p_n = p(n)
+  if p_n % 1000000 == 0:
+    print(n)
+    exit()
+  k += 1
