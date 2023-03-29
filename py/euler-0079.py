@@ -1,12 +1,7 @@
 from os import path
 
 f = open(path.join(path.dirname(__file__), '../resources/p079_keylog.txt'))
-keylog = []
-while 1:
-  l = f.readline()
-  if not l:
-    break
-  keylog.append([int(c) for c in l.strip()])
+keylog = [[int(c) for c in l.strip()] for l in f]
 weights = dict()
 for key in keylog:
   d = weights.get(key[1], (set(), set()))
