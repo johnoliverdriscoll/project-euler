@@ -4,7 +4,7 @@ def pentagonal(n):
 def p(n, p=[1, 1], pentagonals=list()):
   if n >= len(p):
     i = len(pentagonals)
-    while len(pentagonals) == 0 or pentagonals[len(pentagonals) - 1] <= n:
+    while len(pentagonals) == 0 or pentagonals[-1] <= n:
       if i % 2:
         pentagonals.append(pentagonal(-i // 2))
       else:

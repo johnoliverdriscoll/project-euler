@@ -1,7 +1,7 @@
 from os import path
 
 def is_triange_number(n, t = list()):
-  while len(t) == 0 or t[len(t) - 1] < n:
+  while len(t) == 0 or t[-1] < n:
     t.append(((len(t) + 1) * (len(t) + 2)) // 2)
   return n in t
 
