@@ -76,13 +76,15 @@ while count <= n:
     x, y = sorted((t[0], t[1]))
     a, bc = x, y
     if a <= M:
-      for b in range(max(1, bc - M), min(bc, M)):
+      l, u = max(1, bc - M), min(bc, M)
+      for b in range(l, (l + u) // 2 + 1):
         c = bc - b
         if a == M or b == M or c == M and is_int_shortest_route(a, b, c):
           cuboids.add(tuple(sorted((a, b, c))))
     ab, c = x, y
     if c <= M:
-      for a in range(max(1, ab - M), min(ab, M)):
+      l, u = max(1, ab - M), min(ab, M)
+      for a in range(l, (l + u) // 2 + 1):
         b = ab - a
         if a == M or b == M or c == M and is_int_shortest_route(a, b, c):
           cuboids.add(tuple(sorted((a, b, c))))
