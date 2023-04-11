@@ -68,7 +68,7 @@ count = 0
 while count <= n:
   M += 1
   # The inner loop produces duplicates within itself, so a set must be used
-  # here in dedup cuboids. The inner loop does not produce collisions with
+  # here to dedup cuboids. The inner loop does not produce collisions with
   # previous values of M, however, that doesn't seem to make much difference
   # in terms of total runtime for a given n.
   cuboids = set()
