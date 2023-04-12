@@ -9,9 +9,11 @@ def is_prime(n, memo=dict()):
     return False
   if n == 2:
     return True
-  if n not in memo:
-    memo[n] = check_primality_for_n_gt_2(n)
-  return memo[n]
+  p = memo.get(n, None)
+  if p == None:
+    p = check_primality_for_n_gt_2(n)
+    memo[n] = p
+  return p
 
 def gen_primes():
   yield 2

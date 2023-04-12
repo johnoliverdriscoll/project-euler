@@ -11,9 +11,11 @@ def is_prime(n, memo=dict()):
     return False
   if n == 2:
     return True
-  if n not in memo:
-    memo[n] = check_primality_for_n_gt_2(n)
-  return memo[n]
+  p = memo.get(n, None)
+  if p == None:
+    p = check_primality_for_n_gt_2(n)
+    memo[n] = p
+  return p
 
 def get_prime():
   yield 2
@@ -24,25 +26,27 @@ def get_prime():
     p += 2
 
 def get_primes_less_than(n, memo=dict()):
-  if not n in memo:
+  primes = memo.get(n, None)
+  if primes == None:
     prime = get_prime()
     primes = []
     while (p := next(prime)) < n:
       primes.append(p)
     memo[n] = primes
-  return memo[n]
+  return primes
 
 def permutate_sum(n, m=None, memo=dict()):
   if m == None:
     m = n
   if n == 2 or n == 0:
     return 1
-  if not (n, m) in memo:
+  count = memo.get((n, m), None)
+  if count == None:
     count = 0
     for i in get_primes_less_than(m):
       count += permutate_sum(n - i, min(n - i + 1, i + 1))
     memo[(n, m)] = count
-  return memo[(n, m)]
+  return count
 
 n = 1
 while 1:
