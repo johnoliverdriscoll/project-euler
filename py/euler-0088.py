@@ -37,10 +37,10 @@ tree while detecting nodes that are minimal solutions for any given k where
 class Node:
   def __init__(self, c, p, s, a, b=None):
     self.c = c
-    self.a = a
-    self.b = b
     self.p = p
     self.s = s
+    self.a = a
+    self.b = b
 
 def minimal_product_sums(K):
   minimal_product_sums = dict()
