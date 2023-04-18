@@ -35,8 +35,8 @@ tree while detecting nodes that are minimal solutions for any given k where
 """
 
 class Node:
-  def __init__(self, l, a, b, p, s):
-    self.l = l
+  def __init__(self, c, p, s, a, b=None):
+    self.c = c
     self.a = a
     self.b = b
     self.p = p
@@ -44,30 +44,29 @@ class Node:
 
 def minimal_product_sums(K):
   minimal_product_sums = dict()
-  nodes = [Node(1, 2, None, 2, 2)]
+  nodes = [Node(1, 2, 2, 2)]
   ks = set(range(2, K + 1))
-  while 1:
+  while len(ks):
     children = []
     for node in nodes:
-      if node.l == 1:
+      if node.c == 1:
         left = Node(
-          node.l,
-          node.a + 1,
-          None,
+          node.c,
           node.p + node.p // node.a,
           node.s + 1,
+          node.a + 1,
         )
         children.append(left)
         right = Node(
-          node.l + 1,
-          node.a,
-          2,
+          node.c + 1,
           node.p * 2,
           node.s + 2,
+          node.a,
+          2,
         )
-        if right.p <= right.s + K - right.l:
+        if right.p <= right.s + K - right.c:
           if right.p >= right.s:
-            k = right.p - right.s + right.l
+            k = right.p - right.s + right.c
             m = minimal_product_sums.get(k, right.p)
             if m >= right.p:
               minimal_product_sums[k] = right.p
@@ -77,40 +76,39 @@ def minimal_product_sums(K):
       else:
         if node.a > node.b:
           left = Node(
-            node.l,
-            node.a,
-            node.b + 1,
+            node.c,
             node.p + node.p // node.b,
             node.s + 1,
+            node.a,
+            node.b + 1,
           )
-          if left.p <= left.s + K - left.l:
+          if left.p <= left.s + K - left.c:
             if left.p >= left.s:
-              k = left.p - left.s + left.l
+              k = left.p - left.s + left.c
               m = minimal_product_sums.get(k, left.p)
               if m >= left.p:
                 minimal_product_sums[k] = left.p
               if k in ks:
                 ks.remove(k)
             children.append(left)
-        if node.l < K:
+        if node.c < K:
           right = Node(
-            node.l + 1,
-            node.b,
-            2,
+            node.c + 1,
             node.p * 2,
             node.s + 2,
+            node.b,
+            2,
           )
-          if right.p <= right.s + K - right.l:
+          if right.p <= right.s + K - right.c:
             if right.p >= right.s:
-              k = right.p - right.s + right.l
+              k = right.p - right.s + right.c
               m = minimal_product_sums.get(k, right.p)
               if m >= right.p:
                 minimal_product_sums[k] = right.p
               if k in ks:
                 ks.remove(k)
             children.append(right)
-    if len(ks) == 0:
-      return set(minimal_product_sums.values())
     nodes = children
+  return set(minimal_product_sums.values())
 
 print(sum(minimal_product_sums(int(argv[1]))))
