@@ -7,7 +7,7 @@ problems > 100 that I have solved. If you also have the answer, you can
 verify my answer with [this GPG key][1]:
 
 ```shell
-$ import johndriscoll.asc
+$ gpg --import johndriscoll.asc
 $ python3 euler-0101.py | gpg --verify euler-0101.asc -
 ```
 
