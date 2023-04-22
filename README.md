@@ -11,4 +11,4 @@ $ gpg --import johndriscoll.asc
 $ python3 euler-0101.py | gpg --verify euler-0101.asc -
 ```
 
-[1]: tree/master/johndriscoll.asc
+[1]: johndriscoll.asc
