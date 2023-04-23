@@ -80,8 +80,7 @@ def minimal_product_sums(K):
           m = minimal_product_sums.get(k, child.p)
           if m >= child.p:
             minimal_product_sums[k] = child.p
-          if k in ks:
-            ks.remove(k)
+          ks.discard(k)
         nodes.append(child)
   return set(minimal_product_sums.values())
 
