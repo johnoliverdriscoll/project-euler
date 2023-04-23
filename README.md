@@ -1,3 +1,5 @@
+![Project Euler badge](https://projecteuler.net/profile/johnoliverdriscoll.png)
+
 # Project Euler solutions
 
 The source code for programs used to solve the first 100 Project Euler problems
